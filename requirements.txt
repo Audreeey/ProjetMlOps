@@ -6,3 +6,6 @@ black == 22.6.0
 pandas ==1.5.3
 Werkzeug==2.2.2
 numpy==1.21.6
+scikit-learn==0.24.2
+
+
