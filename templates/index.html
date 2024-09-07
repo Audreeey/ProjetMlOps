@@ -1,154 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <div style="color:blue">
-        <form action="{{ url_for('predict')}}" method="post">
-            <h2>Predictive Analysis</h2>
-            <h3>Age</h3><input id="first" name="Age" type="number " required="required">
-            <h3>RestingBP(100-200)</h3><input id="second" name="RestingBP" required="required">
-            <h3>Cholesterol (100-600)</h3><input id="third" name="Cholesterol" required="required">
-            <h3>FastingBS (0 or 1)</h3><input id="fourth" name="FastingBS" required="required">
-            <h3>MaxHR (60-205)</h3><input id="fifth" name="MaxHR" required="required">
-            <h3>Oldpeak (0.0-6.2)</h3><input id="sixth" name="Oldpeak" required="required">
-            <br><br><button id="sub" type="submit ">Result</button>
-            <br>
-
-        </form>
-
-        <br><br><h3>{{ prediction_text }}<h3>
-    </div>
-
-
+    <title>Bank Loan Default Prediction</title>
     <style>
         body {
-            background-color: lightslategray;
-            text-align: center;
-            padding: 0px;
-        }
-        
-        #research {
-            font-size: 18px;
-            width: 100px;
-            height: 23px;
-            top: 23px;
-        }
-        
-        #box {
-            border-radius: 60px;
-            border-color: 45px;
-            border-style: solid;
-            font-family: cursive;
-            text-align: center;
-            background-color: rgb(168, 131, 61);
-            font-size: medium;
-            position: absolute;
-            width: 700px;
-            bottom: 9%;
-            height: 850px;
-            right: 30%;
-            padding: 0px;
-            margin: 0px;
-            font-size: 14px;
-        }
-        
-        #fuel {
-            width: 83px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 20px;
-        }
-        
-        #fuel:hover {
-            background-color: coral;
-        }
-        
-        #research {
-            width: 99px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-        }
-        
-        #research:hover {
-            background-color: coral;
-        }
-        
-        #resea {
-            width: 99px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-        }
-        
-        #resea:hover {
-            background-color: coral;
-        }
-        
-        #sub {
-            width: 120px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-        }
-        
-        #sub:hover {
-            background-color: darkcyan;
-        }
-        
-        #first {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
+            background-color: #708090;
+            color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
         }
-        
-        #second {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
+        .input-field {
+            margin-bottom: 15px;
         }
-        
-        #third {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
-        
-        #fourth {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
         }
-
-        #fifth {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
-        }
-
-        #sixth {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
+        h3 {
+            color: yellow; /* Couleur du texte de la prédiction pour le rendre visible */
+            margin-top: 20px;
         }
     </style>
-</body>
+</head>
+<body>
+    <h1>Bank Loan Default Prediction</h1>
+    <form action="/predict" method="post">
+        <div class="input-field">
+            <label for="credit_lines_outstanding">Credit Lines Outstanding:</label><br>
+            <input type="text" name="credit_lines_outstanding" required><br>
+        </div>
+        <div class="input-field">
+            <label for="loan_amt_outstanding">Loan Amount Outstanding:</label><br>
+            <input type="text" name="loan_amt_outstanding" required><br>
+        </div>
+        <div class="input-field">
+            <label for="total_debt_outstanding">Total Debt Outstanding:</label><br>
+            <input type="text" name="total_debt_outstanding" required><br>
+        </div>
+        <div class="input-field">
+            <label for="income">Income:</label><br>
+            <input type="text" name="income" required><br>
+        </div>
+        <div class="input-field">
+            <label for="years_employed">Years Employed:</label><br>
+            <input type="text" name="years_employed" required><br>
+        </div>
+        <div class="input-field">
+            <label for="fico_score">FICO Score:</label><br>
+            <input type="text" name="fico_score" required><br>
+        </div>
+        <button type="submit" class="button">Predict</button>
+    </form>
 
+    <!-- Affichage du résultat -->
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
 </html>
